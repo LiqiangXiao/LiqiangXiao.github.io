@@ -1,364 +1,660 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Liqiang Xiao (肖力强)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/templatemo-style.css">
-</head>
- 
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
 
-    <style type="text/css">
-            .footer{
-                border: 1px 0px 0px 0px solid #e5e5e5;
-                color: #777;
-                padding: 19px 0;
-                background-color: #f5f5f5;
-            }
-            body{
-                margin-top: 10px;
-            }
-            nav{
-                padding-right: 20px;
-            }
-            .down{
-                margin-top: 65px;
-            }
-            .col-center-block{  
-                float: none;  
-                display: block;  
-                margin-left: auto;  
-                margin-right: auto;  
-            }  
-            .flat{
-                border-radius:0px;
-                background-color:rgb(255,255,255); 
-                border:0px;
-                padding: 0px;
-             }
-</style>  
-        
-    </style>
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
 
-    <title>LiqiangXiao's Space</title>
-</head>
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
 
-<body>
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
 
-<div class="row">
-    <nav id = 'navbar-example' class="navbar navbar-default navbar-fixed-top navbar-inverse" style="text-align:center" role='navigation'>
-    <div class="container-fluid"> 
-        <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" 
-                    data-target=".bs-js-navbar-scrollspy">
-                <span class="sr-only">切换导航</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"></a>
-        </div>
-        <div class="collaps navbar-collapse bs-js-navbar-scrollspy">
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
 
-            <ul class="nav navbar-nav" style="display:inline-block;float:none;">
-                <li class="nav-item">
-                    <a class="nav-link" href="#home">Home<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#project">Project</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#research">Research</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#life">Life</a>
-                </li>
-            </ul>  
-        </div>
-    </div>      
-    </nav>
-</div>
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
 
-<!-- 
-<nav id="navbar-example" class="navbar navbar-default navbar-static navbar-fixed-top navbar-inverse" role="navigation text-center">
-    <div class="container-fluid"> 
-        <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" 
-                    data-target=".bs-js-navbar-scrollspy">
-                <span class="sr-only">切换导航</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"></a>
-        </div>
-        <div class="collapse navbar-collapse bs-js-navbar-scrollspy" >
-            <ul class="nav navbar-nav" style="display:inline-block;float:none;">
-                <li class="nav-item">
-                    <a class="nav-link" href="#home">Home<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#project">Project</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#research">Research</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#life">Life</a>
-                </li>
-            </ul>
-        </div>
-    </div> 
-</nav> -->
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
 
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
 
-<div data-spy="scroll" data-target="#navbar-example" data-offset="0"  data-offset="0" style="height:1000px;overflow:auto; position: relative;">
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
 
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
 
-<!-- <!-个人简介 -->
- <div class="panel panel-default down col-center-block" id='home' style="border-radius:0px;background-color:rgb(250,250,250); border:0px;">
-    <div class="panel-body">
-        <div class="col-md-6 col-center-block">
-            <div class="col-md-12" style="margin-bottom:20px;" >
-               <img src="images/me.jpg" class="col-center-block" style="height:180px;width:180px;display:block;" >
-            </div>
-            <div class="col-md-8 col-center-block text-center">
-                <h3>Liqiang Xiao</h3>
-                <h5>PhD Candidate</h5>
-                <h5>Shanghai Jiao Tong University</h5>
-                <h5>Email: xiaoliqiang at sjtu dot edu dot cn</h5>
-                <p>Research in NLP and machine learning, especially text classification and multi-task learning</p>
-                <a href="files/CV_Liqiang Xiao.pdf">Download CV</a>
-            </div>
-        </div>
-    </div>
-</div>
-  
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
 
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
 
-<div class="panel panel-default" id='project' style="text-align:center;border-radius:0px;border:0px;background-color:#F5F5F5; border:0px;">
-<!-- 项目经历 -->
-    <div class="panel-body">
-            <h4>Project</h4>
-    </div>
-    <div class="panel panel-body" style="border-radius:0px;background-color:#F5F5F5;">
-        <div class="col-md-8 col-center-block">
-            <div class="col-md-4">
-                <div class="thumbnail flat">
-                    <a href="#">
-                        <img src="images/750x500-1.jpg" class="img-responsive" >
-                    </a>
-                    <div class="caption">
-                        <a href="#">
-                            <h4>Muli-Task Learning</h4>
-                            <p>Reducing the interference</p>
-                        </a>
-                        <p>
-                            <a href="#" class="btn btn-default" role="button" >Review</a>
-                        </p>
-                    </div>
-                
-                </div>
-            </div>
-     
-            <div class="col-md-4">
-                <div class="thumbnail flat">
-                    <a href="#">
-                        <img src="images/750x500-2.jpg" class="img-responsive" >
-                    </a>
-                    <div class="caption">
-                        <a href="#">
-                            <h4>Muli-Task Learning</h4>
-                            <p>Reducing the interference</p>
-                        </a>
-                        <p>
-                            <a href="#" class="btn btn-default" role="button" >Review</a>
-                        </p>
-                    </div>
-                
-                </div>
-            </div>
-      
-            <div class="col-md-4">
-                <div class="thumbnail flat">
-                    <a href="#">
-                        <img src="images/750x500-3.jpg" class="img-responsive" >
-                    </a>
-                    <div class="caption">
-                        <a href="#">
-                            <h4>Muli-Task Learning</h4>
-                            <p>Reducing the interference</p>
-                        </a>
-                        <p>
-                            <a href="#" class="btn btn-default" role="button" >Review</a>
-                        </p>
-                    </div>
-                
-                </div>
-            </div>
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
 
-        </div>
-    </div>
-</div>
+mark {
+	background-color: transparent;
+}
 
-<!-- 科研 -->
-<div class="panel panel-default" id='research' style="border-radius:0px;background-color:rgb(250,250,250); border:0px;">
-    <div class="panel-body text-center">
-            <h4>Paper</h4>
-    </div>
+.indented {
+	padding-left: 1.5em;
+}
 
-    <div class="panel panel-body flat" style="background-color:rgb(250,250,250)">
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
 
+img {
+	max-width: 100%;
+}
 
-        <div class="col-md-6 col-center-block">
-            <div class="row">
-                    <div class="col-md-12">
-                        <div class="caption">
-                            <a href="files/gmtcnn.pdf"><h4>A Generalized Recurrent Neural Architecture for Text Classification with Multi-Task Learning</h4> </a>  <!-- title -->
-                            <h5>Liqiang Xiao, Honglun Zhang, Yongkun Wang, Yaohui Jin</h5>   <!-- name -->
-                            <p>IJCAI2017</p>      <!-- source -->
-                        </div>
-                    </div>
-            </div>
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
 
-            <div class="row ">
-                    <div class="col-md-12">
-                        <div class="caption">
-                            <h4>A Generalized Recurrent Neural Architecture for Text Classification with Multi-Task Learning</h4>   <!-- title -->
-                            <h5>Liqiang Xiao, Honglun Zhang, Yongkun Wang, Yaohui Jin</h5>   <!-- name -->
-                            <p>IJCAI2017</p>      <!-- source -->
-                        </div>
-                    </div>
-            </div>
-     
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>Multi-Task Convolutional Neural Network for Text Classification</h4>   <!-- title -->
-                    <h5>Liqiang Xiao, Honglun Zhang, Yongkun Wang, Yaohui Jin</h5>   <!-- name -->
-                    <p>arXiv</p>      <!-- source -->
-                </div>
-            </div>
-     
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>Gated Multi-Task Network for Text Classification</h4>   <!-- title -->
-                    <h5>Liqiang Xiao, Honglun Zhang, Yongkun Wang, Yaohui Jin</h5>  <!--  name -->
-                    <p>arXiv</p>     
-                </div>  
-            </div>
-        </div>
+@page {
+	margin: 1in;
+}
 
+.collection-content {
+	font-size: 0.875rem;
+}
 
-    </div>
-</div>
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
 
-<!-- 生活 -->
-<div class="panel panel-default" id="life" style="text-align:center;border-radius:0px;background-color:#F5F5F5; border:0px;">
-    <div class="panel-body col-block-center">
-        <h4>Life</h4>
-    </div>
+.column {
+	padding: 0 1em;
+}
 
-    <div class="panel-body">
-            <div class="col-md-8 col-center-block">
-                <div class="col-md-4">
-                    <div class="thumbnail" style=" border-radius:0px; border:0px;padding:0px;">
-                        <a href="#">
-                            <img src="images/IMG_1195 2.jpg" class="img-responsive center-block" >
-                        </a>
-                     </div>
-                </div>
+.column:first-child {
+	padding-left: 0;
+}
 
-                <div class="col-md-4">
-                    <div class="thumbnail" style=" border-radius:0px; border:0px;padding:0px;">
-                        <a href="#">
-                            <img src="images/10.pic_hd 2.jpg" class="img-responsive" >
-                        </a>
-                    </div>
-                </div>
+.column:last-child {
+	padding-right: 0;
+}
 
-                <div class="col-md-4">
-                    <div class="thumbnail" style=" border-radius:0px; border:0px;padding:0px;">
-                        <a href="#">
-                            <img src="images/IMG_1450.jpg" class="img-responsive" >
-                        </a>
-                    
-                    </div>
-                </div>
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
 
-                <div class="col-md-4">
-                    <div class="thumbnail" style=" border-radius:0px; border:0px;padding:0px;">
-                        <a href="#">
-                            <img src="images/4.jpg" class="img-responsive" >
-                        </a>
-                    
-                    </div>
-                </div>
-            </div> 
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
 
-                        
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
 
-            <div class="post-masonry col-md-3 col-sm-6">
-                <div class="post-thumb">
-                    <img src="images/1.jpg" alt="">
-                    <div class="title-over">
-                        <h4><a href="#">Title one goes here</a></h4>
-                    </div>
-                    <div class="post-hover text-center">
-                        <div class="inside">
-                            <i class="fa fa-plus"></i>
-                            <span class="date">25 Jan 2084</span>
-                            <h4><a href="#">Title one goes here</a></h4>
-                            <p>Cum sociis natoque penatibus et magnis dis parturient</p>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- /.post-masonry -->
- 
-    </div>
-</div>
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
 
-<div class="footer">
-        <div class="container">
-            <div class="row footer-top ">
-                <div class="col-md-4 text-center">
-                    <h4>Blog of Liqiang Xiao</h4>
-                    <p>Welcome to contact me</p>
-                </div>
-            
-                <div class="col-md-4 text-center">
-                    <h4>About</h4>
-                    <ul class="list-unstyled">
-                        <li>
-                            <a href="">about me</a>
-                        </li>
-                    </ul>
-                </div>
-                     
- 
-                <div class="col-md-4 text-center">
-                    <h4>Contact</h4>
-                    <p>Wechat code</p>
-                    <div class="col-md-4 col-center-block">
-                        <div class="thumbnail" style=" border-radius:0px; border:0px;padding:0px;">
-                            <img src="images/2dcode.jpeg" class="img-responsive" >
-                        </div>
-                    </div>                    
-                </div>
-            </div>
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
 
-            <div class="row footer-bottom">
-                <ul class="list-inline text-center">
-                    <li>Copyright 2016 by lqxiao! Software All Rights Reserved.</li>
-                </ul>
-            </div>
-                    
-        </div>
-</div>
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
 
-</div>
+table {
+	border-left: none;
+	border-right: none;
+}
 
-</body>
-</html>
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
 
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="17efc766-622e-44f5-b740-29eb602eb849" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1550399105-c4db5fb85c18?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><h1 class="page-title">Liqiang Xiao (肖力强)</h1></header><div class="page-body"><div id="98fc15e0-2699-4e77-bc5f-5eaa3d759b40" class="column-list"><div id="7dfa09b3-34ed-45fe-9cab-1bb27f85493e" style="width:16.666666666666664%" class="column"><figure id="ca74f7a3-7951-4a19-85d3-5ba185ba2386" class="image"><a href="Liqiang%20Xiao%20(%E8%82%96%E5%8A%9B%E5%BC%BA)%20ca74f7a379514a1985d35ba185ba2386/2%E5%AF%B88098.jpg"><img style="width:192px" src="Liqiang%20Xiao%20(%E8%82%96%E5%8A%9B%E5%BC%BA)%20ca74f7a379514a1985d35ba185ba2386/2%E5%AF%B88098.jpg"/></a></figure><p id="2209d384-11f3-4378-a091-3fe9faa3c2d5" class=""><strong>Liqiang Xiao </strong></p><p id="e8b34870-1474-4bd4-81d9-af64e658f3b5" class="">xiaoliqiang@sjtu.edu.cn</p><p id="021d58e9-2751-4cc9-8eff-3e3658863846" class="">800 Dongchuan Road, </p><p id="93a1b640-b63a-44cc-ba79-a4db921ae76f" class="">Shanghai, China 200240</p><p id="e22d0f7f-d874-44c5-9569-84fdd26ecb48" class="">
+</p><p id="a52a2d69-4f18-425f-8751-9b82739ad8f2" class="">
+</p><p id="b852d1af-175e-45cd-88ea-a26528505a85" class="">
+</p><p id="b967f21c-b566-4e3d-8380-5402a1cd171f" class="">
+</p><p id="67a3826d-9d3c-4a52-aa11-91b8a8a0449a" class="">
+</p><p id="d6b22b42-e338-4931-ac01-f92b4ab3f533" class="">
+</p><p id="21a9f1b0-796c-43f0-b73b-e234c5110d32" class="">
+</p><p id="35dc8ccb-ce86-4328-8f37-4c47f8315c75" class="">
+</p><p id="116c3d6f-25f0-438c-93fb-7acb32461328" class="">
+</p><p id="c0d50469-6bc5-4a74-91fe-5328155586d8" class="">
+</p><p id="809a6853-6750-4983-beb2-848a095ef7e7" class="">
+</p></div><div id="c71cee6c-8c19-4220-9bc3-e0c197c88adb" style="width:70.83333333333333%" class="column"><p id="915a2509-d1f5-4fc5-a08f-049a6fcf6cb4" class="">I am now a PhD. student at <a href="https://www.sjtu.edu.cn/">Shanghai Jiao Tong University </a>. I got my bachelor&#x27;s degree of Information Engineering at Xi&#x27;an Jiaotong University. I visited Khoury College of Computer Sciences, Northeastern University for one year from 2018 to 2019 under the supervision of Professor <a href="https://web.eecs.umich.edu/~wangluxy/">Lu Wang</a>. </p><p id="5e022759-41ca-4a5a-8661-b022258eb14b" class="">
+</p><p id="0fb6ae90-0818-4b22-9b66-db6f3f91a252" class="">My research is focused on natural language processing, reinforcement learning and machine learning. More specifically, my work is mostly about text summarization, conversational search, multi-task learning, as well as application of reinforcement learning on NLP.  </p><p id="984e3510-a534-4655-8bf0-43fad80ad4fa" class="">
+</p><hr id="82234b11-4d9c-418b-9178-3648701c681a"/><h3 id="90abda71-6600-4354-b58b-2df9e7e813f5" class="">Recent News 📰</h3><p id="5fe685cc-b039-406e-b12b-af44513b276d" class="block-color-gray_background"><time>@September 1, 2021</time> I am going to be a PostDoc at AI institute of Shanghai Jiao Tong University. </p><p id="21aa77a1-ca7a-48db-b2b1-ac5c4b13d693" class="block-color-gray_background"><time>@August 28, 2021</time> I complete my PhD defense. </p><p id="582191f7-253a-4d44-b5ef-5e3c15054db0" class="">
+</p><p id="8922d528-3f1d-4540-b7cf-61b783992d80" class="">
+</p><hr id="b9bcff95-51e4-4913-8fb9-740bb58c8ce5"/><h3 id="c1a36115-27e9-498b-baf8-5c0477c3001f" class="">Research Area and Selected Publications </h3><p id="97aa3d75-fcb3-4e3e-8e52-3840949d5473" class="">
+</p><p id="4edb9751-2e2e-469a-83e3-a05f7a81ce25" class=""><strong>Summarization Paper </strong></p><ul id="48b2df32-d8ef-412d-ae8f-01713a7a0162" class="bulleted-list"><li><strong>Liqiang Xiao</strong>, Lu Wang, Hao He, Yaohui Jin. Modeling Content Importance for Summarization with Pre-trained Language Models. EMNLP 2020.</li></ul><ul id="1a702b17-a7fe-41d8-9b5e-f5fa08e6c305" class="bulleted-list"><li><strong>Liqiang Xiao</strong>, Lu Wang, Hao He, Yaohui Jin. Copy or Rewrite: Hybrid summarization with hierarchical reinforcement learning. AAAI 2020. </li></ul><p id="cec1092c-7102-4059-acf3-1cccb11af949" class="">
+</p><p id="95eebf5c-f6ac-4f4e-846d-01896b3f91b4" class=""><strong>Multi-task Learning Paper </strong></p><ul id="9cc7a1ad-242f-40d3-83d9-5e88cdb3cdc0" class="bulleted-list"><li>Wenqing Chen, JiDong Tian,<strong> Liqiang Xiao</strong>, Hao He, Yaohui Jin. Multi-Task Learning for Logically Dependent Tasks from the Perspective of Causal Inference. EMNLP 2020. </li></ul><ul id="039e33f1-397e-42bb-b9ba-26ed82e96d4a" class="bulleted-list"><li><strong>Liqiang Xiao</strong>, Honglun Zhang, Wenqing Chen. Gated Multi-Task Network for Text Classification. NAACL 2018.</li></ul><ul id="1ceec1a9-f6bf-4488-b540-434b299cd8ff" class="bulleted-list"><li><strong>Liqiang Xiao</strong>, Honglun Zhang, Wenqing Chen, Yongkun Wang, Yaohui Jin. Transformable Convolutional Neural Network for Text Classification. IJCAI 2018.</li></ul><ul id="ef168637-171c-402d-a6c0-31d30c0044f4" class="bulleted-list"><li><strong>Liqiang Xiao</strong>, Honglun Zhang, Wenqing Chen, Yongkun Wang, Yaohui Jin. Learning What to Share: Leaky Multi-Task Network for Text Classification. COLING 2018.</li></ul><ul id="16a83dff-f1bf-4654-987e-ef5f4910f336" class="bulleted-list"><li><strong>Liqiang Xiao</strong>, Honglun Zhang, Wenqing Chen, Yongkun Wang, Yaohui Jin. MCapsNet: Capsule Network for Text with Multi-Task Learning. EMNLP 2018.</li></ul><ul id="cce5dabc-a1e6-4f15-aa2d-46a360a379df" class="bulleted-list"><li>Honglun Zhang, <strong>Liqiang Xiao</strong>, Yongkun Wang, Yaohui Jin. Multi-task label embedding for text classification. EMNLP 2018.</li></ul><ul id="8d5b456a-0b76-4a58-bf88-ee3693f1fcda" class="bulleted-list"><li>Honglun Zhang, <strong>Liqiang Xiao</strong>, Yongkun Wang, Yaohui Jin. A generalized recurrent neural architecture for text classification with multi-task learning. IJCAI 2017. </li></ul><p id="f032a64a-447a-4662-841b-2084bb00c5b7" class="">
+</p><p id="aff3d149-63c2-4e60-b7e7-25047f4843dc" class=""><strong>Others</strong></p><ul id="3c8ab00a-4b31-41b6-9a7b-49e7afcd280f" class="bulleted-list"><li>Wenqing Chen, JiDong Tian,<strong> Liqiang Xiao</strong>, Hao He, Yaohui Jin. A Semantically Consistent and Syntactically Variational Encoder-Decoder Framework for Paraphrase Generation. ACL 2020. </li></ul><ul id="2c5290f7-b5ce-4d4c-991d-e1cfa36409fa" class="bulleted-list"><li>Wenqing Chen, JiDong Tian,<strong> Liqiang Xiao</strong>, Hao He, Yaohui Jin. Exploring Logically Dependent Multi-task Learning with Causal Inference. EMNLP 2020. </li></ul><ul id="a46161d7-934c-4efc-ad63-e50d67bf4daa" class="bulleted-list"><li>Honglun Zhang, <strong>Liqiang Xiao</strong>, Yongkun Wang, Yaohui Jin. Generative Warfare Nets: Ensemble via Adversaries and Collaborators. IJCAI 2018. </li></ul><ul id="93ce1279-fc54-4c42-a57f-ccb7bc996a30" class="bulleted-list"><li>Ying Hu, <strong>Liqiang Xiao</strong>, Yongkun Wang, Yaohui Jin. Fashion pose machine for fashion landmark detection. 2018 International Conference on Image and Video Processing, and Artificial Intelligence. 2018.</li></ul><p id="0a9591b0-e16b-4e8d-a06a-8f01e70a88a1" class="">
+</p><hr id="472ad5ab-52cd-4979-b2dd-d8d7c1009e8b"/><h3 id="bc20d053-8d55-4a29-8bd2-16ce8e3c9d8b" class="">Patents</h3><ul id="3bbcdbc9-3ef7-43c6-8857-b8fb749ef660" class="bulleted-list"><li>金耀辉，何浩，肖力强，陈文清，田济东，“基于语句融合的文本摘要生成方法、系统、终端及介质”，专利公示号 CN112464658A</li></ul><ul id="300a3b2c-8658-4fd9-86c5-36cd050c90df" class="bulleted-list"><li>金耀辉，何浩，肖力强，陈文清，田济东，“混合式文本摘要生成方法、系统、终端及存储介质”，专利公示号 CN112464657A</li></ul><ul id="1726790f-0815-4f0d-8122-ffe2e50b57bf" class="bulleted-list"><li>金耀辉，何浩，肖力强，陈文清，田济东，“基于预训练语言模型和信息论的自动化文本摘要评测方法”，专利公示号 CN112528598A</li></ul><hr id="2c86566f-4eea-4e5f-91cb-8781ddb0f9ae"/><h3 id="22f681a7-7f37-43cf-831d-b830e570f0cd" class="">Recent Professional Activities </h3><ul id="6bae671c-9e89-48d9-a02e-8f63aa3791a6" class="bulleted-list"><li>Review for EMNLP 2021</li></ul><ul id="da320009-5819-4b97-a0b2-1af9bf44d7bc" class="bulleted-list"><li>Serve as PC for IJCAI 2021 </li></ul><p id="0a887870-7c19-44ab-8dd2-6a1e3d6aff7f" class="">
+</p><hr id="2c0a9b7b-b4c1-46eb-a872-f5b73c10c1af"/><h3 id="498d1bb5-8b06-4c03-b54f-da8d16c2bb4c" class="">Life </h3><p id="6990b9f5-eeaf-4170-848f-5e632d174708" class="">
+</p><figure id="4c899082-b832-4e3e-ab6a-c6ad877f40eb" class="image"><a href="Liqiang%20Xiao%20(%E8%82%96%E5%8A%9B%E5%BC%BA)%20ca74f7a379514a1985d35ba185ba2386/511629949544_.pic_hd.jpg"><img style="width:240px" src="Liqiang%20Xiao%20(%E8%82%96%E5%8A%9B%E5%BC%BA)%20ca74f7a379514a1985d35ba185ba2386/511629949544_.pic_hd.jpg"/></a><figcaption>I completed my PhD thesis defense</figcaption></figure><p id="e456d0dc-d884-4bed-a523-224e52e5bee8" class="">
+</p><p id="e695a1b9-5ef3-49f5-9fff-1b11f91476a9" class="">
+</p></div><div id="5e6df285-c6c5-49e4-8c34-db1708a94e56" style="width:12.500000000000005%" class="column"><nav id="c99d0bcd-f6fd-41ea-8233-da9f979e8000" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#90abda71-6600-4354-b58b-2df9e7e813f5">Recent News 📰</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c1a36115-27e9-498b-baf8-5c0477c3001f">Research Area and Selected Publications </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#bc20d053-8d55-4a29-8bd2-16ce8e3c9d8b">Patents</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#22f681a7-7f37-43cf-831d-b830e570f0cd">Recent Professional Activities </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#498d1bb5-8b06-4c03-b54f-da8d16c2bb4c">Life </a></div></nav><p id="06af575a-0efd-4654-86bc-d435c85d7c2e" class="">
+</p></div></div></div></article></body></html>
