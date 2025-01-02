@@ -1,0 +1,706 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>A Brief Survey to LLM Hallucination</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="16fe59a8-4794-8094-865a-c1e6ed1a3fa3" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/webb3.jpg" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🤥</span></div><h1 class="page-title">A Brief Survey to LLM Hallucination</h1><p class="page-description"></p></header><div class="page-body"><h2 id="16fe59a8-4794-803e-a669-e308bff2d615" class="">What is hallucination?</h2><p id="16fe59a8-4794-8083-937d-e8b819e38f8e" class="">Hallucination is usually defined as model generates nonsensical or unfaithful content. </p><p id="16fe59a8-4794-8046-82a9-fcc7ca2fab7e" class="">
+</p><p id="16fe59a8-4794-807b-bfcb-dbc74bc1428e" class="">There are two types of hallucination: </p><ol type="1" id="16fe59a8-4794-800d-adea-d7f41f60624d" class="numbered-list" start="1"><li>Intrinsic hallucination (also known as in-context hallucination or faithfulness hallucination): When a model&#x27;s response contradicts or conflicts with the given context. </li></ol><ol type="1" id="16fe59a8-4794-80f1-9453-f4ff8b456f7e" class="numbered-list" start="2"><li>Extrinsic hallucination (also known as factuality hallucination): Model’s response is not aligned with verifiable real-world facts. Model’s knowledge is limited to pre-training, so model has to know what is does not know to avoid hallucination.</li></ol><p id="16fe59a8-4794-8016-be8d-ebb5d570bc8a" class="">
+</p><p id="16fe59a8-4794-80b0-b17e-c86f140b0dd2" class="">Hallucination is a critical issue as it not only diminishes the practical utility of a model but also undermines user trust. It is far better to admit, &quot;I do not know,&quot; than to provide an unreliable or inaccurate response.</p><p id="16fe59a8-4794-80c4-b484-dd529eb49c2a" class="">
+</p><p id="16fe59a8-4794-80ab-9c8f-e1f2dbdc22c3" class="">Hallucination occurs in humans as well. An interesting experiment conducted in a preschool demonstrated how easily humans can hallucinate. When teachers placed bandages on children while they were napping, the children, upon waking, began to fabricate various explanations for their bandages—ranging from mosquito bites to falling down. This illustrates that any intelligent agent can easily hallucinate when it is not well aligned.</p><div id="16fe59a8-4794-80d6-8216-e0e526b75c75" class="column-list"><div id="0a0e14cd-c58b-43a6-97a8-904e1c76051c" style="width:50%" class="column"><figure id="c9209950-3a57-42e7-b562-0238f654b469" class="image"><a href="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image.png"><img style="width:192px" src="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image.png"/></a><figcaption>Text: place bandage on children</figcaption></figure></div><div id="96e475ec-e1ea-4111-807a-c321fc37e8bd" style="width:50%" class="column"><figure id="e3920caf-e06e-4dfc-b2a1-595eecb4cff2" class="image"><a href="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%201.png"><img style="width:144px" src="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%201.png"/></a><figcaption>Text: (he) pulled me to fall down</figcaption></figure></div></div><figure id="16fe59a8-4794-80e7-b6ed-c8e1933353e9" class="image"><a href="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%202.png"><img style="width:707.9750366210938px" src="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%202.png"/></a><figcaption>Figure 1.  Some examples of LLM hallucination. [From [<a href="https://arxiv.org/abs/2311.05232">Huang et al., 2024</a>] ]</figcaption></figure><h2 id="16fe59a8-4794-8090-96fe-fff7d5167087" class="">What Causes Hallucination?</h2><h3 id="16fe59a8-4794-80e6-b666-c40a738db2de" class="">Pre-training Data Issues </h3><p id="16fe59a8-4794-803b-9939-cf0d4caa1d7b" class="">Crawled datasets are not always reliable, as they may contain incorrect or conflicting information. For instance, societal biases are often linked to hallucination. Biased text, for example, might stereotypically associate the profession of nursing with women.</p><h3 id="16fe59a8-4794-80b5-aa35-e746a83ab0b2" class="">Overfit to New Knowledge </h3><p id="16fe59a8-4794-8009-af4a-c4035d618e05" class="">Forcing a model to overfit data it doesn&#x27;t truly understand causes <span style="border-bottom:0.05em solid">imitative falsehood </span>[<a href="https://arxiv.org/abs/2109.07958">Lin et al.. 2021</a>]. When the model lacks comprehensive understanding of training examples, it simply learns to mimic responses without genuine knowledge. It&#x27;s worth noting that training on new knowledge doesn&#x27;t necessarily cause hallucination—overfitting does [ <a href="https://arxiv.org/abs/2405.05904">Gekhman et al. 2024</a>]. In post-training stage, model needs to be taught to distinguish what it knows and what does not. This is often omitted, especially learning from teacher models or human teachers. </p><h3 id="16fe59a8-4794-804b-a815-ea6ae989966c" class="">Unfaithful Fine-tuning Dataset  </h3><p id="16fe59a8-4794-80bc-a38b-ea4f727964dd" class="">Fine-tuning datasets are obtained through human editing, templates, or teacher models. Models learn to hallucinate when their &quot;teachers&quot; do. LIMA conducted by [<a href="https://arxiv.org/abs/2305.11206">Zhou et al.. 2023</a>], shows that finetuning samples could be as less as 1000 when high quality. It proves that quality is much more important than quality for alignment. </p><h3 id="16fe59a8-4794-80af-bc38-d6ebda6ed6c0" class="">Hallucination from RLHF</h3><p id="16fe59a8-4794-80b9-bf9e-d7e43ce91be2" class="">Model may learn sycophancy when being reinforced with human preference [<a href="https://arxiv.org/pdf/2212.09251">Perez et al. 2022</a>]. It bends to human preference to get higher reward score. This could be related to dataset quality problem or reward hacking. </p><h3 id="16fe59a8-4794-803e-83c3-f7e496785c5a" class="">Others </h3><p id="16fe59a8-4794-808f-a2be-eedd3646c814" class="">Hallucination also related to model’s reasoning ability, decoding strategies [<a href="https://arxiv.org/pdf/2206.04624">Lee et al. 2022</a>] et al.</p><p id="16fe59a8-4794-80b6-bd4d-fc2f52d7e8fd" class="">
+</p><h2 id="16fe59a8-4794-8034-965d-f6d8e1d230be" class="">Hallucination Evaluation </h2><p id="16fe59a8-4794-80f9-b65c-f95cf18dfa5e" class="">Hallucination evaluation assesses the veracity of an LLM’s responses, while hallucination detection evaluates the accuracy of a detection method in identifying hallucinations. In this section, we concentrate on hallucination evaluation benchmarks. </p><p id="16fe59a8-4794-8081-bc16-d11eb78018e6" class="">
+</p><h3 id="16fe59a8-4794-801e-8ddf-d460d20bef90" class="">Factuality｜Multi-Choice</h3><p id="16fe59a8-4794-80e3-b7bf-fbe2a759fcf3" class=""><strong>TruthfulQA</strong> [<a href="https://arxiv.org/pdf/2109.07958">Stephanie et al.., 2022</a>] is a benchmark made up of questions designed to cause imitative falsehoods. It contains two subtasks, generation and multi-choice, where generation rely on human for judgement. The benchmark comprises 817 questions that span 38 categories. For multi-choice task, user can use accuracy, but for generation task, metric needs to be built by them own. </p><figure id="16fe59a8-4794-8003-bb14-f4e31b279dcf" class="image"><a href="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%203.png"><img style="width:480px" src="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%203.png"/></a><figcaption>Figure 2. TruthfulQA examples. The questions are misleading or unanswerable. </figcaption></figure><p id="16fe59a8-4794-8021-8ffc-e53bb76f5e78" class="">
+</p><p id="16fe59a8-4794-8054-b60d-ea2ef9bbc134" class=""><strong>Factor</strong> [<a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Muhlgay,+D">Muhlgay</a><a href="https://arxiv.org/abs/2307.06908"> et al. 2021</a>] is multi-choice benchmark for evaluate LLM hallucination. It use likelihood of answer completion instead accuracy to calculate performance. </p><figure id="16fe59a8-4794-802d-9409-ede778123737" class="image"><a href="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%204.png"><img style="width:384px" src="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%204.png"/></a><figcaption>Figure 3. An examples from Factor benchmark. Image from [Dor et al., 2021] </figcaption></figure><h3 id="16fe59a8-4794-800d-b2b3-ff05d172447d" class="">Factuality ｜RAG</h3><p id="16fe59a8-4794-80d7-b6b5-fc86b4ccb481" class=""><strong>SAFE</strong> [<a href="https://arxiv.org/pdf/2403.18802">Jerry et al.., 2024</a>] is an automated evaluation method that decomposes a long-form response into individual facts. SAFE employs a multi-step reasoning process, including querying Google Search, to verify each fact&#x27;s accuracy. LLM-judge is used to rate each facts. To assess long-form factuality, the paper extends the traditional F1 score. This metric balances the proportion of supported facts (precision) with the proportion of provided facts relative to a user-defined preferred response length (recall).</p><figure id="16fe59a8-4794-802d-9908-f0f2f069f3c2" class="image"><a href="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%205.png"><img style="width:707.9750366210938px" src="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%205.png"/></a><figcaption>Figure 4. How does SAFE work. Image from [<a href="https://arxiv.org/pdf/2403.18802">Jerry et al.., 2024</a>]</figcaption></figure><h3 id="16fe59a8-4794-8022-b460-f5c5d57e6e89" class="">Factuality ｜LLM-Judge</h3><p id="16fe59a8-4794-8029-89c9-e1da557b6bb2" class="">HaluEval 2.0 [<a href="https://arxiv.org/pdf/2305.11747">Junyi et al.., 2023</a>] is a benchmark designed to evaluate and detect hallucinations in LLM outputs. They also propose a straightforward yet effective detection method to identify when LLMs generate unfaithful or incorrect information. Paper used GPT-4 for judgement.</p><p id="16fe59a8-4794-8022-8a0b-d209e6d85728" class="">
+</p><p id="16fe59a8-4794-80f8-a2e8-fc48b3dc2f6f" class="">HALLUQA [<a href="https://arxiv.org/pdf/2310.03368">Cheng et al. 2023</a>] focus on hallucination on Chinese language. It manually writes question set and uses ChatGPT3.5/Puyu/GLM-130B to generate candidate answers. It contains misleading, misleading-hard and knowledge three different subsets. GPT-4 is employed to check the correctness of the LLM’s response against ground-truth. </p><p id="16fe59a8-4794-8009-9f8a-e17b3f93d68f" class="">
+</p><h3 id="16fe59a8-4794-80d5-baac-caf4aa85ba7e" class="">Factuality | Consistency </h3><p id="16fe59a8-4794-80a9-9e82-c94da37f2289" class=""><a href="https://arxiv.org/pdf/2305.18248">Agrawal et al. (2023)</a> investigates whether large language models (LLMs) can internally detect when they generate fabricated or &quot;hallucinated&quot; references, such as nonexistent book or article citations. They ask LLM several time to check the consistency of its answer. Indirect query output a list of author and LLM is employed to check. </p><figure id="16fe59a8-4794-8067-8e4e-d60ff4f678ae" class="image"><a href="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%206.png"><img style="width:707.9625244140625px" src="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%206.png"/></a><figcaption>Figure 5.  Image from <a href="https://arxiv.org/pdf/2305.18248">Ayush et al., (2023)</a> </figcaption></figure><p id="16fe59a8-4794-8053-b7d2-f6729d4fa691" class="">
+</p><h3 id="16fe59a8-4794-8097-8b44-c709eb6ef741" class="">Faithfulness </h3><p id="16fe59a8-4794-80d1-bd29-e71bc7e909d6" class=""><strong>FaithBench</strong> [<a href="https://arxiv.org/pdf/2410.13210">Forrest et al.., 2024</a>] introduces a benchmark designed to evaluate hallucinations—instances where large language models (LLMs) produce unsupported or incorrect information—in summarization tasks. FaithBench assesses summaries generated by 10 contemporary LLMs from 8 distinct families, including GPT, Llama, Gemini, Mistral, Phi, Claude, Command-R, and Qwen. This diversity ensures a comprehensive analysis across various architectures and training methodologies.</p><p id="16fe59a8-4794-8044-be6f-d9d9a8586789" class="">The benchmark includes ground truth annotations provided by human experts, offering detailed justifications at the level of individual text spans. This meticulous annotation process enhances the reliability of the benchmark.</p><p id="16fe59a8-4794-80e7-aadf-fdc4b39b2ce8" class="">FaithBench emphasizes &quot;challenging&quot; summaries—those where state-of-the-art hallucination detection models, including GPT-4o-as-a-judge, exhibit disagreement. By concentrating on these difficult cases, the benchmark aims to push the boundaries of current detection capabilities</p><p id="16fe59a8-4794-80ef-a93e-f57e9da02730" class="">Current hallucination detection models show limited effectiveness when tested against FaithBench. The best-performing detectors achieved balanced accuracies and F1-macro scores around 50-55%, highlighting significant room for improvement in this area.</p><figure id="16fe59a8-4794-8077-85db-c60495d6f025" class="image"><a href="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%207.png"><img style="width:528px" src="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%207.png"/></a><figcaption>Figure 6. Performance of different model on FaithBench.</figcaption></figure><h2 id="16fe59a8-4794-801a-b9a4-ceaf50ac61c4" class="">Mitigation Methods </h2><h3 id="16fe59a8-4794-8046-8fcf-c5a52eba9a01" class="">Data Curation</h3><p id="16fe59a8-4794-806f-a73d-dff3bf19c05b" class="">To enhance factual accuracy and reduce biases in large language models (LLMs), careful selection and processing of pre-training data are key. High-quality, curated datasets from reliable sources, like academic or &quot;textbook-like&quot; materials, help ensure factual correctness. Strategies like up-sampling factual data during pre-training further improve accuracy and mitigate hallucination. Deduplication is also critical, addressing both exact and near-duplicates. Exact duplicates can be identified efficiently using methods like suffix arrays, while near-duplicates rely on hash-based techniques such as MinHash [<a href="https://ieeexplore.ieee.org/abstract/document/666900/">A.Z. et al.</a>, 1997] or semantic approaches like SemDeDup [<a href="https://arxiv.org/abs/2303.09540">Abbas et al. 2023</a>], which detect similarities through embeddings. These measures collectively aim to refine data quality and boost model performance.</p><p id="16fe59a8-4794-80ba-a6bb-c3ac39014ebb" class="">
+</p><p id="16fe59a8-4794-8019-8c53-c9fb008d5947" class="">For post-training datasets, it is crucial to avoid introducing new knowledge and overfitting, as this can lead to imitative hallucinations. Overfitting compromises the model&#x27;s ability to generalise and may cause it to reproduce incorrect information. Tools such as those developed by <a href="https://arxiv.org/abs/2205.11482">Akyürek et al. </a>(2022) have been designed to trace information back to the pretraining corpus, providing greater transparency and control over knowledge sources.</p><h3 id="16fe59a8-4794-80e9-b2e8-d09f5e023bdc" class=""><strong>RAG</strong></h3><p id="16fe59a8-4794-8055-a7a6-d8ed3ae79ed5" class="">Retrieval-Augmented Generation (RAG) enhances large language models (LLMs) by integrating external knowledge through a retrieve-then-read pipeline. This process involves retrieving relevant information from external sources and generating responses based on both the user query and the retrieved documents. By decoupling external knowledge from the LLM, RAG effectively mitigates hallucinations caused by knowledge gaps without compromising the model&#x27;s performance.</p><p id="16fe59a8-4794-8072-a99b-fc0c1c707eea" class="">RAG implementations can be categorized based on the timing of retrieval:</p><ol type="1" id="16fe59a8-4794-80ba-9cb7-d43c0e4b73f4" class="numbered-list" start="1"><li><strong>One-Time Retrieval</strong>: Retrieval occurs once before the generation phase. The model retrieves relevant documents in a single step and then generates the response based on this information.</li></ol><ol type="1" id="16fe59a8-4794-805c-9d5f-ea67665bc445" class="numbered-list" start="2"><li><strong>Iterative Retrieval</strong>: Retrieval and generation occur in multiple cycles. The model retrieves information, generates a partial response, and then uses this intermediate output to perform further retrievals, refining the response iteratively.</li></ol><ol type="1" id="16fe59a8-4794-80c0-964b-f286a5ed770f" class="numbered-list" start="3"><li><strong>Post-Hoc Retrieval (Self-Critique)</strong>: Retrieval happens after an initial response is generated. The model first produces a response based on its internal knowledge, and then retrieval is used to verify and potentially adjust the response for accuracy.</li></ol><ol type="1" id="16fe59a8-4794-804c-994b-fa947b7a6db3" class="numbered-list" start="4"><li><strong>Self-Reflective Retrieval-Augmented Generation (Self-RAG)</strong>, further enhances this framework by enabling the model to decide adaptively when and what to retrieve during the generation process. Self-RAG allows the model to:</li></ol><p id="16fe59a8-4794-80a3-9914-e0eaab3bf559" class="">This self-reflective mechanism enhances the model&#x27;s versatility and effectiveness across diverse tasks, including open-domain question answering, reasoning, and fact verification. Studies have demonstrated that Self-RAG outperforms traditional RAG approaches and state-of-the-art LLMs in improving factual accuracy and citation precision in generated content.</p><p id="16fe59a8-4794-80fb-a70b-ce3511499aeb" class="">
+</p><p id="16fe59a8-4794-8016-82c0-f6030cebbe65" class="">In summary, RAG and its advanced variant, Self-RAG, represent significant advancements in enhancing the reliability and factual accuracy of LLMs by effectively integrating external knowledge and enabling adaptive retrieval strategies.</p><figure id="16fe59a8-4794-803f-90b2-f8546af42a45" class="image"><a href="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%208.png"><img style="width:576px" src="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%208.png"/></a><figcaption>Figure 6. Illustration of three different retrieval schema. Image from <a href="https://arxiv.org/abs/2311.05232">Lei et al (2024)</a> .</figcaption></figure><p id="16fe59a8-4794-80cf-a7ba-c34e4427648f" class="">
+</p><figure id="16fe59a8-4794-80c6-9cfd-d14e325bc5d9" class="image"><a href="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%209.png"><img style="width:576px" src="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%209.png"/></a><figcaption>Figure 7. Self-RAG. Image from [<a href="https://arxiv.org/abs/2310.11511">Asai et al. 2024</a>]</figcaption></figure><h3 id="16fe59a8-4794-804e-aa84-d563f1daa720" class=""><strong>Inference Sampling Methods</strong></h3><p id="16fe59a8-4794-8029-bfe6-d172c6dfca7d" class=""><a href="https://arxiv.org/pdf/2206.04624">Lee et al., (2022) </a>examines how different decoding strategies impact the factual accuracy of generated text. It highlights that commonly used methods like nucleus sampling (top-p) can introduce randomness at each decoding step, leading to potential factual inaccuracies. To address the shortcomings of existing decoding methods, the authors propose &quot;factual-nucleus sampling.&quot; This approach dynamically adjusts the randomness during text generation to enhance factual accuracy while maintaining the quality and diversity of the output. When generating t-th tokens, the top-p possibility is reset as: </p><figure id="16fe59a8-4794-8040-929e-d762a5c512fa" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>p</mi><mi>t</mi></msub><mo>=</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false">(</mo><mi>w</mi><mo separator="true">,</mo><mi>p</mi><mo>×</mo><msup><mi>λ</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p_t = max(w, p \times \lambda ^{t-1})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">ma</span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></div></figure><h3 id="16fe59a8-4794-80c5-9c94-c8cc6b72b22b" class=""><strong>Fine-tuning </strong></h3><p id="16fe59a8-4794-8017-9e91-e23523e2ecfa" class=""><a href="https://arxiv.org/abs/2112.09332">Nakano, et al. (2022</a>) from OpenAI proposed WebChat, where model is taught to use browser to generate better answers. They found SFT (supervised finetuning) and rejection sampling perform the best.  The model’s answers are preferred 56% of the time by human, demonstrating human-level usage of the text-based browser.</p><figure id="16fe59a8-4794-8006-a0d4-fc120ca8dfe3" class="image"><a href="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%2010.png"><img style="width:707.9874877929688px" src="A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3/image%2010.png"/></a><figcaption>Figure 8. WebChat method to produce demonstration datasets. Image from [<a href="https://arxiv.org/abs/2112.09332">Nakano, et al., 2022</a>] </figcaption></figure><p id="16fe59a8-4794-809f-89f7-cabed95b4517" class="">
+</p><h1 id="16fe59a8-4794-802b-9c8d-eb02582fbd5d" class="">Citation</h1><p id="16fe59a8-4794-80e7-baa5-c68d8637cc74" class="">Cited as:</p><blockquote id="16fe59a8-4794-80c6-89bf-c0f12a4c8fb7" class="">Xiao, Liqiang (Dec. 2024). A Brief Survey to LLM Hallucination.</blockquote><p id="16fe59a8-4794-8049-8f10-fdb12d59d597" class="">Or</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="16fe59a8-4794-8014-afe8-ccd1e89b9c90" class="code"><code class="language-CoffeeScript" style="white-space:pre-wrap;word-break:break-all">@article{LiqiangXiao2024hallucination,
+  title   = &quot;A Brief Survey to LLM Hallucination&quot;,
+  author  = &quot;Liqiang Xiao&quot;,
+  journal = &quot;liqiangxiao.github.io&quot;,
+  year    = &quot;2024&quot;,
+  month   = &quot;Dec.&quot;,
+  url     = &quot;...&quot;
+}</code></pre><p id="16fe59a8-4794-80a5-a269-edd38c9fc3d3" class="">
+</p><h2 id="16fe59a8-4794-80d8-8b4b-c6105eddcce0" class="">References: </h2><p id="16fe59a8-4794-80da-893c-d8ee230ab6fb" class="">[1] Huang, Lei, et al. &quot;<a href="https://arxiv.org/abs/2311.05232">A survey on hallucination in large language models: Principles, taxonomy, challenges, and open questions.</a>&quot; <em>ACM Transactions on Information Systems</em> (2023).</p><p id="16fe59a8-4794-80bd-b8b0-c8ff247b877e" class="">[2] Lin, Stephanie, Jacob Hilton, and Owain Evans. &quot;<a href="https://arxiv.org/abs/2109.07958">Truthfulqa: Measuring how models mimic human falsehoods.</a>&quot; <em>arXiv preprint arXiv:2109.07958</em> (2021).</p><p id="16fe59a8-4794-802c-82f0-ee469c61d2c5" class="">[3] Gekhman, Zorik, et al. &quot;<a href="https://arxiv.org/abs/2405.05904">Does Fine-Tuning LLMs on New Knowledge Encourage Hallucinations?.</a>&quot; <em>arXiv preprint arXiv:2405.05904</em> (2024).</p><p id="16fe59a8-4794-80c8-a52d-e118d6618771" class="">[4] Zhou, Chunting, et al. &quot;<a href="https://arxiv.org/abs/2305.11206">Lima: Less is more for alignment.</a>&quot; <em>Advances in Neural Information Processing Systems</em> 36 (2024).</p><p id="16fe59a8-4794-8079-a085-ef6524ce5e83" class="">[5] Perez, Ethan, et al. &quot;<a href="https://arxiv.org/pdf/2212.09251">Discovering language model behaviors with model-written evaluations.</a>&quot; <em>arXiv preprint arXiv:2212.09251</em> (2022).</p><p id="16fe59a8-4794-80eb-8c0b-edcc46b750a6" class="">[6] Chen, Jiuhai, and Jonas Mueller. &quot;<a href="https://aclanthology.org/2024.acl-long.283/">Quantifying uncertainty in answers from any language model and enhancing their trustworthiness.</a>&quot; <em>Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</em>. 2024.</p><p id="16fe59a8-4794-809d-a5e4-dcf12799c6bb" class="">[7] Muhlgay, Dor, et al. &quot;<a href="https://arxiv.org/abs/2307.06908">Generating benchmarks for factuality evaluation of language models.</a>&quot; <em>arXiv preprint arXiv:2307.06908</em> (2023).</p><p id="16fe59a8-4794-80a7-8721-cad04c656dc5" class="">[8] Wei, Jerry, et al. &quot;<a href="https://arxiv.org/abs/2403.18802">Long-form factuality in large language models.</a>&quot; <em>arXiv preprint arXiv:2403.18802</em> (2024).</p><p id="16fe59a8-4794-80ee-bfcb-df534b1b2c72" class="">[9] Li, Junyi, et al. &quot;<a href="https://arxiv.org/abs/2305.11747">Halueval: A large-scale hallucination evaluation benchmark for large language models.</a>&quot; <em>arXiv preprint arXiv:2305.11747</em> (2023).</p><p id="16fe59a8-4794-80b8-a4e5-d516f116c79b" class="">[10] Cheng, Qinyuan, et al. &quot;<a href="https://arxiv.org/abs/2310.03368">Evaluating hallucinations in chinese large language models.</a>&quot; <em>arXiv preprint arXiv:2310.03368</em> (2023).</p><p id="16fe59a8-4794-8082-9c52-dc6a90d0fd56" class="">[11] Agrawal, Ayush, et al. &quot;<a href="https://arxiv.org/abs/2305.18248">Do Language Models Know When They&#x27;re Hallucinating References?</a>.&quot; <em>arXiv preprint arXiv:2305.18248</em> (2023).</p><p id="16fe59a8-4794-8031-a4e8-dd07ee226192" class="">[12] Bao, Forrest Sheng, et al. &quot;<a href="https://arxiv.org/abs/2410.13210">FaithBench: A Diverse Hallucination Benchmark for Summarization by Modern LLMs</a>.&quot; <em>arXiv preprint arXiv:2410.13210</em> (2024).</p><p id="16fe59a8-4794-8010-a342-f81c488d171b" class="">[13] Akyürek, Ekin, et al. &quot;<a href="https://arxiv.org/abs/2205.11482">Towards tracing factual knowledge in language models back to the training data.</a>&quot; <em>arXiv preprint arXiv:2205.11482</em> (2022).</p><p id="16fe59a8-4794-806d-bf38-f6d9cea7f16a" class="">[14] Asai, Akari, et al. &quot;<a href="https://arxiv.org/abs/2310.11511">Self-rag: Learning to retrieve, generate, and critique through self-reflection.</a>&quot; <em>arXiv preprint arXiv:2310.11511</em> (2023).</p><p id="16fe59a8-4794-80c9-b821-fe124652f19d" class="">[15] Lee, Nayeon, et al. &quot;<a href="https://proceedings.neurips.cc/paper_files/paper/2022/hash/df438caa36714f69277daa92d608dd63-Abstract-Conference.html">Factuality enhanced language models for open-ended text generation.</a>&quot; <em>Advances in Neural Information Processing Systems</em> 35 (2022): 34586-34599.</p><p id="16fe59a8-4794-80db-a557-d4658987b10d" class="">[16] Nakano, Reiichiro, et al. &quot;<a href="https://arxiv.org/abs/2112.09332">Webgpt: Browser-assisted question-answering with human feedback.</a>&quot; <em>arXiv preprint arXiv:2112.09332</em> (2021).</p><p id="16fe59a8-4794-80b9-8763-d364366bd092" class="">[17] Broder, Andrei Z. &quot;<a href="https://ieeexplore.ieee.org/abstract/document/666900/">On the resemblance and containment of documents.</a>&quot; <em>Proceedings. Compression and Complexity of SEQUENCES 1997 (Cat. No. 97TB100171)</em>. IEEE, 1997.</p><p id="16fe59a8-4794-8047-8abe-c06a1495dcdd" class="">[18] Abbas, Amro, et al. &quot;<a href="https://arxiv.org/abs/2303.09540">Semdedup: Data-efficient learning at web-scale through semantic deduplication.</a>&quot; <em>arXiv preprint arXiv:2303.09540</em> (2023).</p><p id="16fe59a8-4794-801f-be60-fbce08d68221" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

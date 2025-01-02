@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Liqiang Xiao (肖力强)</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Liqiang Xiao</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -17,7 +17,7 @@ body {
 @media only screen {
 	body {
 		margin: 2em auto;
-		max-width: 1200px;
+		max-width: 900px;
 		color: rgb(55, 53, 47);
 	}
 }
@@ -213,7 +213,7 @@ ul > li {
 }
 
 ul.to-do-list {
-	text-indent: -1.7em;
+	padding-inline-start: 0;
 }
 
 ul.to-do-list > li {
@@ -283,6 +283,33 @@ ol > li {
 	margin-right: 1em;
 }
 
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
 time {
 	opacity: 0.5;
 }
@@ -320,7 +347,7 @@ img.icon {
 	display: block;
 	object-fit: cover;
 	width: 100%;
-	height: 30vh;
+	max-height: 30vh;
 }
 
 .page-header-icon {
@@ -461,14 +488,14 @@ blockquote {
 	margin-top: 0.25em;
 }
 
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
 .code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
 .serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
 .mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
 .pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
 .pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
 .pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
@@ -482,138 +509,159 @@ blockquote {
 .pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
 .pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
 .highlight-default {
+	color: rgba(55, 53, 47, 1);
 }
 .highlight-gray {
-	color: rgb(155,154,151);
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
 }
 .highlight-brown {
-	color: rgb(100,71,58);
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
 }
 .highlight-orange {
-	color: rgb(217,115,13);
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
 }
 .highlight-yellow {
-	color: rgb(223,171,1);
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
 }
 .highlight-teal {
-	color: rgb(15,123,108);
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
 }
 .highlight-blue {
-	color: rgb(11,110,153);
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
 }
 .highlight-purple {
-	color: rgb(105,64,165);
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
 }
 .highlight-pink {
-	color: rgb(173,26,114);
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
 }
 .highlight-red {
-	color: rgb(224,62,62);
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
 }
 .highlight-gray_background {
-	background: rgb(235,236,237);
+	background: rgba(241, 241, 239, 1);
 }
 .highlight-brown_background {
-	background: rgb(233,229,227);
+	background: rgba(244, 238, 238, 1);
 }
 .highlight-orange_background {
-	background: rgb(250,235,221);
+	background: rgba(251, 236, 221, 1);
 }
 .highlight-yellow_background {
-	background: rgb(251,243,219);
+	background: rgba(251, 243, 219, 1);
 }
 .highlight-teal_background {
-	background: rgb(221,237,234);
+	background: rgba(237, 243, 236, 1);
 }
 .highlight-blue_background {
-	background: rgb(221,235,241);
+	background: rgba(231, 243, 248, 1);
 }
 .highlight-purple_background {
-	background: rgb(234,228,242);
+	background: rgba(244, 240, 247, 0.8);
 }
 .highlight-pink_background {
-	background: rgb(244,223,235);
+	background: rgba(249, 238, 243, 0.8);
 }
 .highlight-red_background {
-	background: rgb(251,228,228);
+	background: rgba(253, 235, 236, 1);
 }
 .block-color-default {
 	color: inherit;
 	fill: inherit;
 }
 .block-color-gray {
-	color: rgba(55, 53, 47, 0.6);
-	fill: rgba(55, 53, 47, 0.6);
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
 }
 .block-color-brown {
-	color: rgb(100,71,58);
-	fill: rgb(100,71,58);
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
 }
 .block-color-orange {
-	color: rgb(217,115,13);
-	fill: rgb(217,115,13);
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
 }
 .block-color-yellow {
-	color: rgb(223,171,1);
-	fill: rgb(223,171,1);
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
 }
 .block-color-teal {
-	color: rgb(15,123,108);
-	fill: rgb(15,123,108);
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
 }
 .block-color-blue {
-	color: rgb(11,110,153);
-	fill: rgb(11,110,153);
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
 }
 .block-color-purple {
-	color: rgb(105,64,165);
-	fill: rgb(105,64,165);
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
 }
 .block-color-pink {
-	color: rgb(173,26,114);
-	fill: rgb(173,26,114);
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
 }
 .block-color-red {
-	color: rgb(224,62,62);
-	fill: rgb(224,62,62);
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
 }
 .block-color-gray_background {
-	background: rgb(235,236,237);
+	background: rgba(241, 241, 239, 1);
 }
 .block-color-brown_background {
-	background: rgb(233,229,227);
+	background: rgba(244, 238, 238, 1);
 }
 .block-color-orange_background {
-	background: rgb(250,235,221);
+	background: rgba(251, 236, 221, 1);
 }
 .block-color-yellow_background {
-	background: rgb(251,243,219);
+	background: rgba(251, 243, 219, 1);
 }
 .block-color-teal_background {
-	background: rgb(221,237,234);
+	background: rgba(237, 243, 236, 1);
 }
 .block-color-blue_background {
-	background: rgb(221,235,241);
+	background: rgba(231, 243, 248, 1);
 }
 .block-color-purple_background {
-	background: rgb(234,228,242);
+	background: rgba(244, 240, 247, 0.8);
 }
 .block-color-pink_background {
-	background: rgb(244,223,235);
+	background: rgba(249, 238, 243, 0.8);
 }
 .block-color-red_background {
-	background: rgb(251,228,228);
+	background: rgba(253, 235, 236, 1);
 }
-.select-value-color-default { background-color: rgba(206,205,202,0.5); }
-.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
-.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
-.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
-.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
-.select-value-color-green { background-color: rgba(0,135,107,0.2); }
-.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
-.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
-.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
-.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
 
 .checkbox {
 	display: inline-flex;
@@ -633,28 +681,13 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="17efc766-622e-44f5-b740-29eb602eb849" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1550399105-c4db5fb85c18?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><h1 class="page-title">Liqiang Xiao (肖力强)</h1></header><div class="page-body"><div id="98fc15e0-2699-4e77-bc5f-5eaa3d759b40" class="column-list"><div id="7dfa09b3-34ed-45fe-9cab-1bb27f85493e" style="width:16.666666666666664%" class="column"><figure id="ca74f7a3-7951-4a19-85d3-5ba185ba2386" class="image"><a href="Liqiang%20Xiao%20(%E8%82%96%E5%8A%9B%E5%BC%BA)%20ca74f7a379514a1985d35ba185ba2386/2%E5%AF%B88098.jpg"><img style="width:192px" src="Liqiang%20Xiao%20(%E8%82%96%E5%8A%9B%E5%BC%BA)%20ca74f7a379514a1985d35ba185ba2386/2%E5%AF%B88098.jpg"/></a></figure><p id="2209d384-11f3-4378-a091-3fe9faa3c2d5" class=""><strong>Liqiang Xiao </strong></p><p id="e8b34870-1474-4bd4-81d9-af64e658f3b5" class="">xiaoliqiang@sjtu.edu.cn</p><p id="021d58e9-2751-4cc9-8eff-3e3658863846" class="">800 Dongchuan Road, </p><p id="93a1b640-b63a-44cc-ba79-a4db921ae76f" class="">Shanghai, China 200240</p><p id="e22d0f7f-d874-44c5-9569-84fdd26ecb48" class="">
-</p><p id="a52a2d69-4f18-425f-8751-9b82739ad8f2" class="">
-</p><p id="b852d1af-175e-45cd-88ea-a26528505a85" class="">
-</p><p id="b967f21c-b566-4e3d-8380-5402a1cd171f" class="">
-</p><p id="67a3826d-9d3c-4a52-aa11-91b8a8a0449a" class="">
-</p><p id="d6b22b42-e338-4931-ac01-f92b4ab3f533" class="">
-</p><p id="21a9f1b0-796c-43f0-b73b-e234c5110d32" class="">
-</p><p id="35dc8ccb-ce86-4328-8f37-4c47f8315c75" class="">
-</p><p id="116c3d6f-25f0-438c-93fb-7acb32461328" class="">
-</p><p id="c0d50469-6bc5-4a74-91fe-5328155586d8" class="">
-</p><p id="809a6853-6750-4983-beb2-848a095ef7e7" class="">
-</p></div><div id="c71cee6c-8c19-4220-9bc3-e0c197c88adb" style="width:70.83333333333333%" class="column"><p id="915a2509-d1f5-4fc5-a08f-049a6fcf6cb4" class="">I am now a PhD. student at <a href="https://www.sjtu.edu.cn/">Shanghai Jiao Tong University </a>. I got my bachelor&#x27;s degree of Information Engineering at Xi&#x27;an Jiaotong University. I visited Khoury College of Computer Sciences, Northeastern University for one year from 2018 to 2019 under the supervision of Professor <a href="https://web.eecs.umich.edu/~wangluxy/">Lu Wang</a>. </p><p id="5e022759-41ca-4a5a-8661-b022258eb14b" class="">
-</p><p id="0fb6ae90-0818-4b22-9b66-db6f3f91a252" class="">My research is focused on natural language processing, reinforcement learning and machine learning. More specifically, my work is mostly about text summarization, conversational search, multi-task learning, as well as application of reinforcement learning on NLP.  </p><p id="984e3510-a534-4655-8bf0-43fad80ad4fa" class="">
-</p><hr id="82234b11-4d9c-418b-9178-3648701c681a"/><h3 id="90abda71-6600-4354-b58b-2df9e7e813f5" class="">Recent News 📰</h3><p id="5fe685cc-b039-406e-b12b-af44513b276d" class="block-color-gray_background"><time>@September 1, 2021</time> I am going to be a PostDoc at AI institute of Shanghai Jiao Tong University. </p><p id="21aa77a1-ca7a-48db-b2b1-ac5c4b13d693" class="block-color-gray_background"><time>@August 28, 2021</time> I complete my PhD defense. </p><p id="582191f7-253a-4d44-b5ef-5e3c15054db0" class="">
-</p><p id="8922d528-3f1d-4540-b7cf-61b783992d80" class="">
-</p><hr id="b9bcff95-51e4-4913-8fb9-740bb58c8ce5"/><h3 id="c1a36115-27e9-498b-baf8-5c0477c3001f" class="">Research Area and Selected Publications </h3><p id="97aa3d75-fcb3-4e3e-8e52-3840949d5473" class="">
-</p><p id="4edb9751-2e2e-469a-83e3-a05f7a81ce25" class=""><strong>Summarization Paper </strong></p><ul id="48b2df32-d8ef-412d-ae8f-01713a7a0162" class="bulleted-list"><li><strong>Liqiang Xiao</strong>, Lu Wang, Hao He, Yaohui Jin. Modeling Content Importance for Summarization with Pre-trained Language Models. EMNLP 2020.</li></ul><ul id="1a702b17-a7fe-41d8-9b5e-f5fa08e6c305" class="bulleted-list"><li><strong>Liqiang Xiao</strong>, Lu Wang, Hao He, Yaohui Jin. Copy or Rewrite: Hybrid summarization with hierarchical reinforcement learning. AAAI 2020. </li></ul><p id="cec1092c-7102-4059-acf3-1cccb11af949" class="">
-</p><p id="95eebf5c-f6ac-4f4e-846d-01896b3f91b4" class=""><strong>Multi-task Learning Paper </strong></p><ul id="9cc7a1ad-242f-40d3-83d9-5e88cdb3cdc0" class="bulleted-list"><li>Wenqing Chen, JiDong Tian,<strong> Liqiang Xiao</strong>, Hao He, Yaohui Jin. Multi-Task Learning for Logically Dependent Tasks from the Perspective of Causal Inference. EMNLP 2020. </li></ul><ul id="039e33f1-397e-42bb-b9ba-26ed82e96d4a" class="bulleted-list"><li><strong>Liqiang Xiao</strong>, Honglun Zhang, Wenqing Chen. Gated Multi-Task Network for Text Classification. NAACL 2018.</li></ul><ul id="1ceec1a9-f6bf-4488-b540-434b299cd8ff" class="bulleted-list"><li><strong>Liqiang Xiao</strong>, Honglun Zhang, Wenqing Chen, Yongkun Wang, Yaohui Jin. Transformable Convolutional Neural Network for Text Classification. IJCAI 2018.</li></ul><ul id="ef168637-171c-402d-a6c0-31d30c0044f4" class="bulleted-list"><li><strong>Liqiang Xiao</strong>, Honglun Zhang, Wenqing Chen, Yongkun Wang, Yaohui Jin. Learning What to Share: Leaky Multi-Task Network for Text Classification. COLING 2018.</li></ul><ul id="16a83dff-f1bf-4654-987e-ef5f4910f336" class="bulleted-list"><li><strong>Liqiang Xiao</strong>, Honglun Zhang, Wenqing Chen, Yongkun Wang, Yaohui Jin. MCapsNet: Capsule Network for Text with Multi-Task Learning. EMNLP 2018.</li></ul><ul id="cce5dabc-a1e6-4f15-aa2d-46a360a379df" class="bulleted-list"><li>Honglun Zhang, <strong>Liqiang Xiao</strong>, Yongkun Wang, Yaohui Jin. Multi-task label embedding for text classification. EMNLP 2018.</li></ul><ul id="8d5b456a-0b76-4a58-bf88-ee3693f1fcda" class="bulleted-list"><li>Honglun Zhang, <strong>Liqiang Xiao</strong>, Yongkun Wang, Yaohui Jin. A generalized recurrent neural architecture for text classification with multi-task learning. IJCAI 2017. </li></ul><p id="f032a64a-447a-4662-841b-2084bb00c5b7" class="">
-</p><p id="aff3d149-63c2-4e60-b7e7-25047f4843dc" class=""><strong>Others</strong></p><ul id="3c8ab00a-4b31-41b6-9a7b-49e7afcd280f" class="bulleted-list"><li>Wenqing Chen, JiDong Tian,<strong> Liqiang Xiao</strong>, Hao He, Yaohui Jin. A Semantically Consistent and Syntactically Variational Encoder-Decoder Framework for Paraphrase Generation. ACL 2020. </li></ul><ul id="2c5290f7-b5ce-4d4c-991d-e1cfa36409fa" class="bulleted-list"><li>Wenqing Chen, JiDong Tian,<strong> Liqiang Xiao</strong>, Hao He, Yaohui Jin. Exploring Logically Dependent Multi-task Learning with Causal Inference. EMNLP 2020. </li></ul><ul id="a46161d7-934c-4efc-ad63-e50d67bf4daa" class="bulleted-list"><li>Honglun Zhang, <strong>Liqiang Xiao</strong>, Yongkun Wang, Yaohui Jin. Generative Warfare Nets: Ensemble via Adversaries and Collaborators. IJCAI 2018. </li></ul><ul id="93ce1279-fc54-4c42-a57f-ccb7bc996a30" class="bulleted-list"><li>Ying Hu, <strong>Liqiang Xiao</strong>, Yongkun Wang, Yaohui Jin. Fashion pose machine for fashion landmark detection. 2018 International Conference on Image and Video Processing, and Artificial Intelligence. 2018.</li></ul><p id="0a9591b0-e16b-4e8d-a06a-8f01e70a88a1" class="">
-</p><hr id="472ad5ab-52cd-4979-b2dd-d8d7c1009e8b"/><h3 id="bc20d053-8d55-4a29-8bd2-16ce8e3c9d8b" class="">Patents</h3><ul id="3bbcdbc9-3ef7-43c6-8857-b8fb749ef660" class="bulleted-list"><li>金耀辉，何浩，肖力强，陈文清，田济东，“基于语句融合的文本摘要生成方法、系统、终端及介质”，专利公示号 CN112464658A</li></ul><ul id="300a3b2c-8658-4fd9-86c5-36cd050c90df" class="bulleted-list"><li>金耀辉，何浩，肖力强，陈文清，田济东，“混合式文本摘要生成方法、系统、终端及存储介质”，专利公示号 CN112464657A</li></ul><ul id="1726790f-0815-4f0d-8122-ffe2e50b57bf" class="bulleted-list"><li>金耀辉，何浩，肖力强，陈文清，田济东，“基于预训练语言模型和信息论的自动化文本摘要评测方法”，专利公示号 CN112528598A</li></ul><hr id="2c86566f-4eea-4e5f-91cb-8781ddb0f9ae"/><h3 id="22f681a7-7f37-43cf-831d-b830e570f0cd" class="">Recent Professional Activities </h3><ul id="6bae671c-9e89-48d9-a02e-8f63aa3791a6" class="bulleted-list"><li>Review for EMNLP 2021</li></ul><ul id="da320009-5819-4b97-a0b2-1af9bf44d7bc" class="bulleted-list"><li>Serve as PC for IJCAI 2021 </li></ul><p id="0a887870-7c19-44ab-8dd2-6a1e3d6aff7f" class="">
-</p><hr id="2c0a9b7b-b4c1-46eb-a872-f5b73c10c1af"/><h3 id="498d1bb5-8b06-4c03-b54f-da8d16c2bb4c" class="">Life </h3><p id="6990b9f5-eeaf-4170-848f-5e632d174708" class="">
-</p><figure id="4c899082-b832-4e3e-ab6a-c6ad877f40eb" class="image"><a href="Liqiang%20Xiao%20(%E8%82%96%E5%8A%9B%E5%BC%BA)%20ca74f7a379514a1985d35ba185ba2386/511629949544_.pic_hd.jpg"><img style="width:240px" src="Liqiang%20Xiao%20(%E8%82%96%E5%8A%9B%E5%BC%BA)%20ca74f7a379514a1985d35ba185ba2386/511629949544_.pic_hd.jpg"/></a><figcaption>I completed my PhD thesis defense</figcaption></figure><p id="e456d0dc-d884-4bed-a523-224e52e5bee8" class="">
-</p><p id="e695a1b9-5ef3-49f5-9fff-1b11f91476a9" class="">
-</p></div><div id="5e6df285-c6c5-49e4-8c34-db1708a94e56" style="width:12.500000000000005%" class="column"><nav id="c99d0bcd-f6fd-41ea-8233-da9f979e8000" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#90abda71-6600-4354-b58b-2df9e7e813f5">Recent News 📰</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c1a36115-27e9-498b-baf8-5c0477c3001f">Research Area and Selected Publications </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#bc20d053-8d55-4a29-8bd2-16ce8e3c9d8b">Patents</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#22f681a7-7f37-43cf-831d-b830e570f0cd">Recent Professional Activities </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#498d1bb5-8b06-4c03-b54f-da8d16c2bb4c">Life </a></div></nav><p id="06af575a-0efd-4654-86bc-d435c85d7c2e" class="">
-</p></div></div></div></article></body></html>
+</style></head><body><article id="163e59a8-4794-8033-aa56-eed49240c540" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/webb1.jpg" style="object-position:center 50%"/><h1 class="page-title">Liqiang Xiao</h1><p class="page-description"></p></header><div class="page-body"><p id="16fe59a8-4794-8030-b3e4-de0525e28172" class="">I obtained my PhD from Shanghai Jiao Tong University and completed my bachelor&#x27;s degree in Information Engineering at Xi&#x27;an Jiaotong University. From 2018 to 2019, I visited the Khoury College of Cmputer Sciences at Northeastern University, where I was mentored by Professor  <a href="https://web.eecs.umich.edu/~wangluxy/">Lu Wang</a>. </p><p id="163e59a8-4794-8040-91d7-fd925f8c674b" class="">
+</p><p id="163e59a8-4794-80e9-a686-dbd225f24522" class="">My research is focused on LLM alignment, natural language processing, reinforcement learning. More specifically, my work is mostly about text summarization, conversational search, multi-task learning, as well as application of reinforcement learning on NLP.  </p><p id="163e59a8-4794-80e1-9c8f-e084239fb97d" class="">
+</p><hr id="163e59a8-4794-8014-92db-ca732c07a850"/><h3 id="163e59a8-4794-803e-8b13-e72ec68c3631" class="">Recent News 📰</h3><p id="163e59a8-4794-80ed-a875-d826c5f83f2a" class="block-color-gray_background"><time>@August 1, 2022</time> Join Amazon as an Applied Scientist.</p><p id="163e59a8-4794-8018-a388-db81a6f7e57f" class="block-color-gray_background"><time>@August 28, 2021</time> I complete my PhD defense. </p><p id="16fe59a8-4794-8027-92c4-c6584e9a68b0" class="">
+</p><p id="163e59a8-4794-8029-a716-e470a8c7ae28" class="">
+</p><hr id="163e59a8-4794-800c-b5de-cbf10acc3a56"/><h3 id="163e59a8-4794-804f-aa0b-ffd32192665b" class="">Research Area and Selected Publications </h3><p id="16fe59a8-4794-8091-909d-c46beec7c34b" class="">
+</p><p id="163e59a8-4794-8066-883e-c0000d4760ae" class=""><strong>Summarization Paper </strong></p><ul id="163e59a8-4794-800d-be4b-dd9d61006e8e" class="bulleted-list"><li style="list-style-type:disc"><strong>Liqiang Xiao</strong>, Lu Wang, Hao He, Yaohui Jin. Modeling Content Importance for Summarization with Pre-trained Language Models. EMNLP 2020.</li></ul><ul id="163e59a8-4794-8093-b6ca-e22837011b52" class="bulleted-list"><li style="list-style-type:disc"><strong>Liqiang Xiao</strong>, Lu Wang, Hao He, Yaohui Jin. Copy or Rewrite: Hybrid summarization with hierarchical reinforcement learning. AAAI 2020. </li></ul><p id="163e59a8-4794-8009-a443-dc3509310c82" class="">
+</p><p id="163e59a8-4794-8018-87d0-d7f9f0399298" class=""><strong>Multi-task Learning Paper </strong></p><ul id="163e59a8-4794-808d-bdb2-e267bf729a4a" class="bulleted-list"><li style="list-style-type:disc">Wenqing Chen, JiDong Tian,<strong> Liqiang Xiao</strong>, Hao He, Yaohui Jin. Multi-Task Learning for Logically Dependent Tasks from the Perspective of Causal Inference. EMNLP 2020. </li></ul><ul id="163e59a8-4794-80e2-8b68-f3489522ea33" class="bulleted-list"><li style="list-style-type:disc"><strong>Liqiang Xiao</strong>, Honglun Zhang, Wenqing Chen. Gated Multi-Task Network for Text Classification. NAACL 2018.</li></ul><ul id="163e59a8-4794-80b3-b6ce-fd507ff3ccba" class="bulleted-list"><li style="list-style-type:disc"><strong>Liqiang Xiao</strong>, Honglun Zhang, Wenqing Chen, Yongkun Wang, Yaohui Jin. Transformable Convolutional Neural Network for Text Classification. IJCAI 2018.</li></ul><ul id="163e59a8-4794-80dd-8f92-c6c301eeec8e" class="bulleted-list"><li style="list-style-type:disc"><strong>Liqiang Xiao</strong>, Honglun Zhang, Wenqing Chen, Yongkun Wang, Yaohui Jin. Learning What to Share: Leaky Multi-Task Network for Text Classification. COLING 2018.</li></ul><ul id="163e59a8-4794-8053-b91b-dc52f2e8f781" class="bulleted-list"><li style="list-style-type:disc"><strong>Liqiang Xiao</strong>, Honglun Zhang, Wenqing Chen, Yongkun Wang, Yaohui Jin. MCapsNet: Capsule Network for Text with Multi-Task Learning. EMNLP 2018.</li></ul><ul id="163e59a8-4794-80e0-8199-d321f8a4d0d6" class="bulleted-list"><li style="list-style-type:disc">Honglun Zhang, <strong>Liqiang Xiao</strong>, Yongkun Wang, Yaohui Jin. Multi-task label embedding for text classification. EMNLP 2018.</li></ul><ul id="163e59a8-4794-800f-92df-f26bda633f83" class="bulleted-list"><li style="list-style-type:disc">Honglun Zhang, <strong>Liqiang Xiao</strong>, Yongkun Wang, Yaohui Jin. A generalized recurrent neural architecture for text classification with multi-task learning. IJCAI 2017. </li></ul><p id="163e59a8-4794-80ad-a596-f04e5658f99f" class="">
+</p><p id="163e59a8-4794-8015-8516-c2015ad80723" class=""><strong>Others</strong></p><ul id="163e59a8-4794-809c-ae27-cfd9d8ca07ee" class="bulleted-list"><li style="list-style-type:disc">Wenqing Chen, JiDong Tian,<strong> Liqiang Xiao</strong>, Hao He, Yaohui Jin. A Semantically Consistent and Syntactically Variational Encoder-Decoder Framework for Paraphrase Generation. ACL 2020. </li></ul><ul id="163e59a8-4794-80dd-ba40-f87df67e9213" class="bulleted-list"><li style="list-style-type:disc">Wenqing Chen, JiDong Tian,<strong> Liqiang Xiao</strong>, Hao He, Yaohui Jin. Exploring Logically Dependent Multi-task Learning with Causal Inference. EMNLP 2020. </li></ul><ul id="163e59a8-4794-8024-b94e-c8faa403332b" class="bulleted-list"><li style="list-style-type:disc">Honglun Zhang, <strong>Liqiang Xiao</strong>, Yongkun Wang, Yaohui Jin. Generative Warfare Nets: Ensemble via Adversaries and Collaborators. IJCAI 2018. </li></ul><ul id="163e59a8-4794-8080-87e3-d20915878b81" class="bulleted-list"><li style="list-style-type:disc">Ying Hu, <strong>Liqiang Xiao</strong>, Yongkun Wang, Yaohui Jin. Fashion pose machine for fashion landmark detection. 2018 International Conference on Image and Video Processing, and Artificial Intelligence. 2018.</li></ul><p id="163e59a8-4794-80a5-ae0c-fa06b954d2a7" class="">
+</p><hr id="163e59a8-4794-80b7-bfcf-d89f03c37cd7"/><h3 id="163e59a8-4794-80f3-b4a4-d67a01afa269" class="">Patents</h3><ul id="163e59a8-4794-804d-82e1-f41d58023977" class="bulleted-list"><li style="list-style-type:disc">金耀辉，何浩，肖力强，陈文清，田济东，“基于语句融合的文本摘要生成方法、系统、终端及介质”，专利公示号 CN112464658A</li></ul><ul id="163e59a8-4794-8071-b80a-ddfacace4f51" class="bulleted-list"><li style="list-style-type:disc">金耀辉，何浩，肖力强，陈文清，田济东，“混合式文本摘要生成方法、系统、终端及存储介质”，专利公示号 CN112464657A</li></ul><ul id="163e59a8-4794-80fe-81ac-dac29b2cca1b" class="bulleted-list"><li style="list-style-type:disc">金耀辉，何浩，肖力强，陈文清，田济东，“基于预训练语言模型和信息论的自动化文本摘要评测方法”，专利公示号 CN112528598A</li></ul><hr id="163e59a8-4794-800d-9beb-f0eb772816ca"/><h3 id="163e59a8-4794-805d-8543-f6c5effc6db9" class="">Recent Professional Activities </h3><ul id="163e59a8-4794-80ba-ac72-e1521a22d2e5" class="bulleted-list"><li style="list-style-type:disc">Review for EMNLP 2021</li></ul><ul id="163e59a8-4794-8080-aa36-f706ca2a92bb" class="bulleted-list"><li style="list-style-type:disc">Serve as PC for IJCAI 2021 </li></ul><p id="163e59a8-4794-80ef-a5d0-c05040d46f52" class="">
+</p><hr id="163e59a8-4794-8074-a801-d03d871b9848"/><h3 id="163e59a8-4794-800b-b1b7-ea4ecacfc379" class="">Blogs</h3><figure id="16fe59a8-4794-8094-865a-c1e6ed1a3fa3" class="link-to-page"><a href="Liqiang%20Xiao%20163e59a847948033aa56eed49240c540/A%20Brief%20Survey%20to%20LLM%20Hallucination%2016fe59a847948094865ac1e6ed1a3fa3.html"><span class="icon">🤥</span>A Brief Survey to LLM Hallucination</a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
